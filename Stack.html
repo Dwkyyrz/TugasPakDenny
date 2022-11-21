@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>STACK | DWIKY</title>
+  <link rel="icon" type="image/x-icon" href="LOGO.png">
+</head>
+<body>
+
+  <h2>MAHASISWA TEKNOLOGI INFORMASI</h2>
+  <section class="identitas">  
+    <div>
+      <span>Nama: Mohammad Dwiky Riza Ardana</span>
+      <span>NIM : E41212003</span>
+      <span>Golongan : A</span>
+      <span>Program Studi : Teknik Informasi PSDKU Sidoarjo</span>
+    </div>
+    <div>
+      <span>Mata Kuliah : Struktur Data</span>
+      <span>Dosen pengampu: Dr. Denny Trias Utomo, S.Si, MT</span>
+    </div>
+  </section>
+
+  <section>
+    <hr size="5" color="black" noshade="0">
+    <h2>mengecek kata polindrom</h2>
+    <div>
+        <label for="teks">Masukan kata:</label>
+        <br>
+        <input type="text" id="teks" placeholder="contoh: kasur ini rusak"/>
+          <br>
+        <label for="teks">reverse kata:</label>
+        <br>
+        <input type="text" id="reverse" readonly />
+        <br>
+        <label for="teks">Hasil:</label>
+        <br>
+        <input type="text" id="hasil" readonly />
+          <br>
+          <br>
+        <button type="submit" onclick="polindrom()">SUBMIT</button>
+    </div>
+    <hr size="5" color="black" noshade="0">
+  </section>
+
+  <section>
+    <h2>Konversi bilangan desimal ke Binner</h2>
+    <div>
+      <label for="inputDec">Masukan bilangan:</label>
+      <br>
+      <input type="number" id="inputDec" placeholder="contoh : 89"/>
+      <br>
+      <label for="hasilBin">hasil:</label>
+      <br>
+      <input type="number" id="hasilBin" readonly/>
+      <br>
+      <!-- <button type="submit" onclick="decToBinary()">SUBMIT</button> -->
+    </div>
+    
+  </section>
+
+    <!-- POLINDROM -->
+    <script>
+      function polindrom() {
+        var kata = document.getElementById("teks").value;
+        if (kata !== "") {
+          var rkata = [];
+          // for (var i = 0; i < kata.length; i++) {
+          //   rkata.push(kata[i]);
+          // }
+          for (var i = kata.length -1; i>=0;i--){
+            rkata +=kata[i];
+          }
+
+          document.getElementById("reverse").value = rkata;
+            if (kata === rkata){
+              document.getElementById("hasil").value = rkata + " merupakan kata polindrom";
+            }
+              else { document.getElementById("hasil").value = rkata + " bukan kata polindrom dari " + kata;}
+      }else {
+        alert("Isi form terlebih dahulu!!!!");
+      }
+      }
+    </script>
+    <!-- END OF POLINDROM -->
+
+    <!-- KONVERSI DESIMAL KE BINNER -->
+    <script>
+      let decInp = document.getElementById("inputDec");
+      let binInp = document.getElementById("hasilBin");
+
+      decInp.addEventListener("input", () => {
+        let decValue = parseInt(decInp.value);
+        binInp.value = decValue.toString(2);
+      });
+
+      binInp.addEventListener("input", () => {
+        let binValue = binInp.value;
+        if (binValidator(binValue)) {
+          decInp.value = parseInt(binValue, 2);
+        }
+
+        function binValidator(num) {
+          for (let i = 0; i < num.length; i++) {
+            if (num[i] != "0" && num[i] != "1") {
+              return false;
+            }
+          }
+          return true;
+        }
+      });
+    </script>
+    <!--- END  -->
+
+
+    <style>
+      
+      .identitas {
+        display: flex;
+        margin-right: 11%;
+        justify-content: space-between;
+      }
+      div {
+        display: flex;
+        flex-direction: column;
+        margin-left: 15%;
+      }
+      h2 {
+        text-transform: uppercase; 
+        text-align: center;
+      }
+      input {
+        height: 30px;
+        width: 85%;
+
+      }
+      button { height: 30px; width: 100px;}
+    </style>
+</body>
+</html>
